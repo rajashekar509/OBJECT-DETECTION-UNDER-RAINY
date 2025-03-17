@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection Under Rainy Conditions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Object Detection Under Rainy Conditions</h1>
+        <center>
+        <p>Upload a rainy image to derain and detect objects.</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">Upload and Derain</button>
+        </form>
+
+    {% if original_image %}
+    <h2>Original Image</h2>
+    <img src="{{ url_for('static', filename='uploads/' + original_image) }}" alt="Original Image" width="400">
+
+    <h2>Derained Image</h2>
+    <img src="{{ url_for('static', filename='uploads/' + derained_image) }}" alt="Derained Image" width="400">
+{% endif %}
+
+{% if detected_image %}
+    <h2>Detected Image with Bordered Objects</h2>
+    <img src="{{ url_for('static', filename='uploads/' + detected_image) }}" alt="Detected Image" width="400">
+{% endif %}
+
+</center>
+    </div>
+</body>
+</html>
